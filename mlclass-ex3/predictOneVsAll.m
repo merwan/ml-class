@@ -31,7 +31,7 @@ for c = 1:num_labels
     htheta(:, c) = sigmoid(X * all_theta(c, :)');
 end
 htheta = htheta >= 0.5;
-p = max(htheta, [], 2);
+[temp, p] = max(htheta, [], 2);
 
 
 % =========================================================================
