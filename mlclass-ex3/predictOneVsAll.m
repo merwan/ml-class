@@ -27,12 +27,8 @@ X = [ones(m, 1) X];
 %       
 
 % train each row for all classes and keep the label with the highest probability
-for c = 1:num_labels
-    htheta(:, c) = sigmoid(X * all_theta(c, :)');
-end
-htheta = htheta >= 0.5;
+htheta = X * all_theta';
 [temp, p] = max(htheta, [], 2);
-
 
 % =========================================================================
 
