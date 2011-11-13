@@ -86,7 +86,7 @@ for t = 1:m
         yk = y(t) == k;
         delta_3(k) = htheta(t, k) - yk;
     end
-    delta_2 = Theta2' * delta_3' .* sigmoidGradient(a2(t, :))';
+    delta_2 = Theta2' * delta_3' .* sigmoidGradient([1, z2(t, :)])';
     delta_2 = delta_2(2:end);
 
     Theta1_grad = Theta1_grad + delta_2 * a1(t, :);
