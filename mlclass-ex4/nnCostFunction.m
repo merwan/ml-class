@@ -81,6 +81,16 @@ regularization = lambda / (2 * m) * (sum(sum(Theta1(:, 2:end) .^ 2)) + sum(sum(T
 J = J + regularization;
 
 
+DELTA = zeros(size(Theta1));
+for t = 1:m
+    for k = 1:num_labels
+        yk = y(t) == k;
+        deltak(k) = htheta(t, k) - yk;
+    end
+    delta_2 = Theta2' * deltak' .* sigmoidGradient(a2(t, :))';
+    delta_2 = delta_2(2:end);
+    DELTA = DELTA + delta_2 * a1(t, :);
+end
 
 
 
