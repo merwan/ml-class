@@ -77,7 +77,8 @@ for k = 1:num_labels
     J = J + Jk;
 end
 
-
+regularization = lambda / (2 * m) * (sum(sum(Theta1(:, 2:end) .^ 2)) + sum(sum(Theta2(:, 2:end) .^ 2)));
+J = J + regularization;
 
 
 
