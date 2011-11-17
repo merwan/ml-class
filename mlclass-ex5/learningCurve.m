@@ -58,8 +58,10 @@ error_val   = zeros(m, 1);
 for i = 1:m
     Xset = X(1:i, :);
     yset = y(1:i);
-    theta = trainLinearReg(X, y, 0);
+    theta = trainLinearReg(Xset, yset, lambda);
     error_train(i) = linearRegCostFunction(Xset, yset, theta, 0);
+    theta = trainLinearReg(Xval(1:i, :), yval(1:i), lambda);
+    error_val(i) = linearRegCostFunction(Xval, yval, theta, 0);
 end
 
 
