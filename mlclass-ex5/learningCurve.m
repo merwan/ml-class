@@ -55,13 +55,15 @@ error_val   = zeros(m, 1);
 
 % ---------------------- Sample Solution ----------------------
 
+theta_val = trainLinearReg(Xval, yval, lambda);
 for i = 1:m
     Xset = X(1:i, :);
     yset = y(1:i);
-    theta = trainLinearReg(Xset, yset, lambda);
-    error_train(i) = linearRegCostFunction(Xset, yset, theta, 0);
-    theta = trainLinearReg(Xval(1:i, :), yval(1:i), lambda);
-    error_val(i) = linearRegCostFunction(Xval, yval, theta, 0);
+    theta_set = trainLinearReg(Xset, yset, lambda);
+    error_train(i) = linearRegCostFunction(Xset, yset, theta_set, 0);
+    Xset = Xval(1:i, :);
+    yset = yval(1:i);
+    error_val(i) = linearRegCostFunction(Xset, yset, theta_val, 0);
 end
 
 
